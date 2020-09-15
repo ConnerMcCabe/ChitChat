@@ -10,7 +10,7 @@ a realtime chat app with websockets, a cleaner approach to a previous project fo
 ## Usage-
 git clone, cd to file, run the following in terminal
 
-npm install
-npm run dev
+* npm install
+* npm run dev
 
 Go to localhost:3000
