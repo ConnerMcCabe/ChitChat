@@ -1,7 +1,11 @@
 const express = require('express');
+const http = require('http');
 const path = require('path');
+const socketio = require('socket.io');
 
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
 //Set static folders
 app.use(express.static(path.join(__dirname, 'public')));
@@ -9,9 +13,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //landing page is always gonna be the index.js
 app.get('/', function (req, res) {
   throw new Error('OOPS') // Express will catch this on its own.
-  
+})
+
+//run on client connect
+io.on('connection', socket => {
+  console.log('new socket connection...')
 })
 
 const PORT = process.env.PORT || 3000 ;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
