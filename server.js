@@ -17,7 +17,9 @@ app.get('/', function (req, res) {
 
 //run on client connect
 io.on('connection', socket => {
-  console.log('new socket connection...')
+  console.log('new socket connection...');
+
+  socket.emit('message', 'Welcome to the party');
 })
 
 const PORT = process.env.PORT || 3000 ;
