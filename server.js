@@ -27,8 +27,8 @@ io.on('connection', socket => {
     io.emit('message', 'A user has left the Chat')
   });
 
-  socket.on('chatMessage', (msg) => {
-    console.log(msg)
+  socket.on('chatMessage', (message) => {
+    console.log(message)
   })
 })
 

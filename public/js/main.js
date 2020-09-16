@@ -10,7 +10,7 @@ socket.on('message', message => {
 chatForm.addEventListener('submit', e => {
   e.preventDefault();
 
-  const msg = e.target.elements.msg.value;
+  const message = e.target.elements.message.value;
 
-  socket.emit('chatMessage', msg);
+  socket.emit('chatMessage', message);
 });
