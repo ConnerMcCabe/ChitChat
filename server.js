@@ -17,9 +17,19 @@ app.get('/', function (req, res) {
 
 //run on client connect
 io.on('connection', socket => {
-  console.log('new socket connection...');
-
   socket.emit('message', 'Welcome to the party');
+
+  //Broadcast on user connect
+  socket.broadcast.emit('message', 'A user has joined the Chat')
+
+  //Broadcast on user disconnect
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left the Chat')
+  });
+
+  socket.on('chatMessage', (msg) => {
+    console.log(msg)
+  })
 })
 
 const PORT = process.env.PORT || 3000 ;
